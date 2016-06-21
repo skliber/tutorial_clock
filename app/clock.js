@@ -6,7 +6,8 @@ clock();
 
 function openWindow () {
 	// ウィンドウのオブジェクトを取得
-	var win = require("remote").getCurrentWindow();
+	var win = require("electron").remote.getCurrentWindow();
+
 
 	// ウィンドウ位置を復元
 	if (localStorage.getItem("windowPosition")) {

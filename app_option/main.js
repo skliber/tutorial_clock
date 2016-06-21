@@ -1,7 +1,8 @@
-var app = require("app");
-var BrowserWindow = require("browser-window");
+var electron = require("electron");
+var app = electron.app;
+var BrowserWindow = electron.BrowserWindow;
 
-var mainWindow = null;
+let mainWindow;
 
 app.on("window-all-closed", function() {
 	if (process.platform != "darwin") {
@@ -22,16 +23,16 @@ app.on("ready", function() {
 	});
 
 	// index.html を開く
-	mainWindow.loadUrl("file://" + __dirname + "/index.html");
+	mainWindow.loadURL("file://" + __dirname + "/index.html");
 
 	mainWindow.on("closed", function() {
 		mainWindow = null;
 	});
 
 	// タスクトレイに格納
-	var Menu = require("menu");
-	var Tray = require("tray");
-	var nativeImage = require("native-image");
+	var Menu = electron.Menu;
+	var Tray = electron.Tray;
+	var nativeImage = electron.nativeImage;
 
 	var trayIcon = new Tray(nativeImage.createFromPath(__dirname + "/icon.png"));
 
